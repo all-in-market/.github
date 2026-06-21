@@ -1,13 +1,15 @@
-![All-In-Market 대문](image/allinmarket.png)
+![All-In-Market 대문](allinmarket.png)
+
 ---
+
 # 1. 👨‍👩‍👧‍👦 팀원 소개
 
-| 이름  | 역할 | 담당 기능                                                     | GitHub     | GitLab |
-|-----|----|-----------------------------------------------------------|------------|---------------|
-| 김세현 | 팀장 | 관리자 서버 / 알림 서버 / WebSocket / Flyway 도입                    | [GitHub](https://github.com/ginsengcandy) | [GitLab](https://gitlab.com/kimsparadise0202) |
-| 함형우 | 팀원 | 고객 서버 API / CI/CD / Infra / Terraform                     | [GitHub](https://github.com/hyuham1335-stack) | [GitLab](https://gitlab.com/hyuham1335) |
-| 배주원 | 팀원 | 고객 서버 API / 채팅 서버 / WebSocket / Redis Pub/Sub / 정산, 일일 통계 | [GitHub](https://github.com/bjw446) | [GitLab](https://gitlab.com/yourmylife1211) |
-| 이준연 | 팀원 | 고객 서버 API / LangChain4j / Vector Embedding / Outbox 패턴 적용 | [GitHub](https://github.com/LeeJun14) | [GitLab](https://gitlab.com/777ljy777) |
+| 이름  | 역할 | 담당 기능                                                     | GitHub     |
+|-----|----|-----------------------------------------------------------|------------|
+| 김세현 | 팀장 | 관리자 서버 / 알림 서버 / WebSocket / Flyway 도입                    | [GitHub](https://github.com/ginsengcandy) |
+| 함형우 | 팀원 | 고객 서버 API / CI/CD / Infra / Terraform                     | [GitHub](https://github.com/hyuham1335-stack) |
+| 배주원 | 팀원 | 고객 서버 API / 채팅 서버 / WebSocket / Redis Pub/Sub / 정산, 일일 통계 | [GitHub](https://github.com/bjw446) |
+| 이준연 | 팀원 | 고객 서버 API / LangChain4j / Vector Embedding / Outbox 패턴 적용 | [GitHub](https://github.com/LeeJun14) |
 
 <br>
 
@@ -17,51 +19,24 @@
 
 ## 프로젝트 소개
 
-### “높은 트래픽 환경에서도 안정적인 주문 처리를 보장하는 이커머스 백엔드 구축”
+### “고트래픽 환경에서도 안정적인 주문 처리를 보장하는 이커머스 백엔드 구축”
 
-`AllInMarket`은 구매자/판매자 도메인을 분리한 멀티 벤더 이커머스 백엔드 프로젝트입니다.
+AllInMarket은 다수 판매자의 판매자가 입점하여 제품을 판매할 수 있는 이커머스 플랫폼입니다.
 
-실제 이커머스 실무에서 발생하는 재고 차감 시 동시성 문제, 주문 상태 전이, 판매자별 주문 분리 문제, 실시간 알림 서비스 등이 구현되어 있습니다.
+대표적인 멀티 벤더 이커머스 플랫폼 쿠팡(coupang)을 모티브로 하여, 실제 이커머스 실무에서 발생하는 재고 차감 시 동시성 문제, 주문 상태 전이, 판매자별 주문 분리 문제, 실시간 알림 서비스 등이 구현되어 있습니다.
 
-## 핵심 기술 스택
-
-| 영역 | 기술 |
-|---|---|
-| Language / Framework | Java 21, Spring Boot 4, Spring MVC, Spring Security |
-| Persistence | Spring Data JPA, Querydsl, PostgreSQL, Flyway |
-| Cache / Lock | Redis, Redisson |
-| Auth / Security | JWT, Refresh Token Rotation, Redis blacklist, Login rate limit |
-| Docs / Test | JUnit 5, Mockito, Spring REST Docs, Asciidoctor |
-| Observability / Infra | Actuator, Micrometer, Prometheus, CloudWatch, Grafana, Terraform, k6 |
-
-## 실행 및 검증
-
-```bash
-# 전체 테스트
-./gradlew test
-
-# REST Docs 생성
-./gradlew asciidoctor
-
-# 애플리케이션 실행
-./gradlew bootRun
-
-# k6 시나리오 실행은 로컬 인프라 준비 후 수행
-docker compose -f docker-compose-k6.yml up --abort-on-container-exit
-```
-
-필수 환경변수 예시는 `DB_PASSWORD`, `JWT_SECRET`, `SELLER_ID`, `SELLER_PASSWORD`, `SERVER_SECRET_KEY`입니다. 로컬 실행 시 PostgreSQL, Redis 등 외부 의존성이 필요합니다.
 <br>
-
-
 
 ## 프로젝트 기간
 
 - 2026.04.07 ~ 2026.05.15
+
+<br>
+
 ---
 
 # 3. 🏗️ Architecture
-![architecture](image/AllInMarket-Architecture.png)
+![architecture](AllInMarket-Architecture.png)
 
 <br>
 
@@ -73,17 +48,17 @@ docker compose -f docker-compose-k6.yml up --abort-on-container-exit
 |-----------------|-------------------------|
 | customer-server | 구매자 / 판매자 / 상품 API      |
 | chat-server     | AI 및 실시간 채팅             |
-| notification-server    | 재입고 및 이벤트 알림            |
+| alarm-server    | 재입고 및 이벤트 알림            |
 | admin-server    | 관리자 API                 |
 
 <br>
 
 ## 🔗 Server README
 
-- Customer Server README → [바로가기](https://gitlab.com/allinone322020/e-commerce-final-project/-/blob/dev/README.md)
-- Chat Server README → [바로가기](https://gitlab.com/allinone322020/chat-server/-/blob/main/README.md)
-- Notification Server README → [바로가기](https://gitlab.com/allinone322020/notification-server/-/blob/dev/README.md)
-- Admin Server README → [바로가기](https://gitlab.com/allinone322020/admin-server/-/blob/dev/README.md)
+- Customer Server README → [바로가기](#)
+- Chat Server README → [바로가기](#)
+- Alarm Server README → [바로가기](#)
+- Admin Server README → [바로가기](#)
 
 <br>
 
@@ -167,7 +142,7 @@ docker compose -f docker-compose-k6.yml up --abort-on-container-exit
 # 7. 🗂️ 전체 ERD
 
 
-![ERD](image/AllInMarket-ERD.png)
+![ERD](AllInMarket-ERD.png)
 
 
 
@@ -475,10 +450,10 @@ Jeong et al. (2024) 논문(NAACL 2024)은 질문의 복잡도에 따라 검색 �
 
 ### 성능 개선 결과
 
-![분산락 개선](image/RedisLock-throughput.png)
-![분산락 개선2](image/RedisLock-rps.png)
+![분산락 개선](Redis%20분산락%20개선-throughput.png)
+![분산락 개선2](Redis%20분산락%20개선-rps.png)
 
-![분산락 개선3](image/RedisLock-p95-med-avg.png)
+![분산락 개선3](Redis%20분산락%20개선-p95-med-avg.png)
 
 중복 락 제거 후 동일 조건에서 부하 테스트를 진행한 결과, 모든 지표에서 유의미한 성능 향상을 확인했습니다.
 
@@ -518,7 +493,7 @@ Jeong et al. (2024) 논문(NAACL 2024)은 질문의 복잡도에 따라 검색 �
 
 ### 성능 개선 결과
 
-![VirtualThread](image/VirtualThread-p95-med-avg.png)
+![VirtualThread](VirtualThread%20도입%20개선-p95-med-avg.png)
 
 Virtual Thread 전환 후 동일한 부하 테스트(VU 20) 조건에서 지연 시간 지표가 약 50% 이상 개선되었습니다.
 
@@ -560,7 +535,7 @@ RAG 파이프라인의 전 과정(데이터 전처리, 검색, 생성)을 고도
 
 ### 성능 개선 결과
 
-![RAG](image/RAG.png)
+![RAG](RAG%20파이프라인%20정교화.png)
 
 품질 지표 측정 도구인 RAGAS를 통해 정량적으로 검증한 결과, 모든 지표에서 괄목할만한 향상을 확인했습니다.
 
@@ -602,10 +577,10 @@ RAG 파이프라인의 전 과정(데이터 전처리, 검색, 생성)을 고도
 
 ### 성능 개선 결과
 
-![스케줄러](image/scheduler-throughput.png)
-![스케줄러2](image/scheduler-rps.png)
+![스케줄러](스케줄러%20간격%20개선-throughput.png)
+![스케줄러2](스케줄러%20간격%20개선-rps.png)
 
-![스케줄러3](image/scheduler-p95-med-avg.png)
+![스케줄러3](스케줄러%20간격%20개선-p95-med-avg.png)
 
 스케줄러 주기를 비즈니스 우선순위에 맞게 재설정한 결과, API 처리 성능과 안정성이 크게 향상되었습니다.
 
@@ -640,10 +615,10 @@ RAG 파이프라인의 전 과정(데이터 전처리, 검색, 생성)을 고도
 
 ### 성능 개선 결과
 
-![Hikari](image/HikariCP-throughput.png)
-![Hikari2](image/HikariCP-rps.png)
+![Hikari](HikariCP%20개선-throughput.png)
+![Hikari2](HikariCP%20개선-rps.png)
 
-![Hikari3](image/HikariCP-p95-med-avg.png)
+![Hikari3](HikariCP%20개선-p95-med-avg.png)
 
 커넥션 풀 확장 후, 대기 시간이 줄어들면서 전반적인 시스템 처리 효율이 향상되었습니다.
 
@@ -808,7 +783,7 @@ RAG 파이프라인의 전 과정(데이터 전처리, 검색, 생성)을 고도
 - 쿼리 비교 예시 (HTTP 요청 수 상태 코드별 집계)
 
   | 도구         | 쿼리 예시                                                                                                | 특징                                |
-          |------------|------------------------------------------------------------------------------------------------------|-----------------------------------|
+      |------------|------------------------------------------------------------------------------------------------------|-----------------------------------|
   | CloudWatch | SEARCH('{http_server_requests, method, status, uri} MetricName=""http_server_requests""', 'Sum', 60) | 엄격함: 저장된 모든 Dimension을 명시해야 조회 가능 |
   | Prometheus | sum by(status) (http_server_requests_seconds_count)                                                  | 유연함: Label 기반으로 필요한 지표만 선택적 집계 가능 |
 
@@ -1105,7 +1080,7 @@ AWS 리소스와 기본 연동이 자연스럽다는 장점이 있었다.
 
 ## Prometheus + Grafana
 
-![Grafana](image/grafana.png)
+![Grafana](grafana.png)
 
 Prometheus + Grafana는 애플리케이션 내부 메트릭 분석에 사용하였다.
 
@@ -1123,7 +1098,7 @@ Prometheus는 PromQL 기반 Label 조회가 가능하여 CloudWatch보다 애플
 
 ## Alert 시스템 구성
 
-![CloudWatch](image/CloudWatch.png)
+![CloudWatch](CloudWatch.png)
 
 CloudWatch Alarm 기반 알림 시스템을 구성하였다.
 
